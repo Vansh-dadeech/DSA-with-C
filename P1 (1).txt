@@ -1,0 +1,107 @@
+// 10-02-25
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX_SIZE 100
+
+void insert(int *arr, int *size){
+    int pos, value, i;
+    printf("Enter Position :");
+    scanf("%d", &pos);
+    printf("Enter Value: ");
+    scanf("%d", &value);
+    if(pos>*size || pos<=0){
+        printf("Invalid Position !!!");
+    }
+    else {
+        for(i=*size;i>=pos;i--){
+            arr[i]=arr[i-1];
+        }
+        arr[pos-1]=value;
+        (*size)++;
+        printf("Element Inserted !!!\n");
+    }
+}
+void print(int *arr, int n){
+    if (n==0){
+        printf("List is Empty !!!\n");
+    }
+    else{
+        int i;
+        printf("List Elements are: ");
+        for(i=0;i<n;i++){
+            printf("%d ", arr[i]);
+        }
+    }
+}
+void search(int *arr, int n){         // khudki
+    if (n==0){
+        printf("List is Empty !!!\n");
+    }
+    else{
+        int find, i, flag=0;
+        printf("Enter Value: ");
+        scanf("%d", &find);
+        for(i=0;i<n;i++){
+            if (arr[i]==find){
+                flag=1;
+            }
+        }
+        if (flag==1){
+            printf("Element Found !!!\n");
+        }
+        else
+        printf("Element Not Found !!!\n");
+    }
+}
+void deletes(int *arr, int *size){
+    int pos, i;
+    printf("Enter Position :");
+    scanf("%d", &pos);
+    if(pos>*size || pos<=0){
+    printf("Invalid Position !!!");
+    }
+    else{
+        for(i=pos-1;i<*size;i++)
+        {
+            arr[i]=arr[i+1]; // left shift
+        }
+        (*size)--;
+        printf("Element Deleted !!!\n");
+    }
+}
+int main()
+{
+    int arr[MAX_SIZE], choice, size, i;
+    printf("Enter List size: ");
+    scanf("%d", &size);
+    printf("Enter List Elements: ");
+    for(i=0;i<size;i++){
+        scanf("%d", &arr[i]);
+    }
+    while(1){
+        printf("PRESS \n1: Insertion\n2: Deletion\n3: Searching\n4: Traversing\n5: Exit\nENTER CHOICE: ");
+        scanf("%d", &choice);
+        switch(choice)
+        {
+            case 1:
+                insert(arr, &size);
+                break;
+            case 2:
+                deletes(arr, &size);
+                break;
+            case 3:
+                search(arr, size);
+                break;
+            case 4:
+                print(arr, size);
+                break;
+            case 5:
+                break;
+            default:
+                printf("Invalid Option !!!\n");
+        }
+        printf("\n");
+        system("pause");
+   
+    }
+}
