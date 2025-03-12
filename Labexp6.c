@@ -1,4 +1,5 @@
 // lab exp 6
+
 #include<stdio.h>
 #include<ctype.h>
 #include<stdlib.h>
@@ -21,10 +22,11 @@ void enqueue(int data){
 int dequeue(){
     int data=queue[front];
     if(front==rear){
-        front=rear-1;
+        front=rear=-1;
     }
     else
-        front++;
+        front++; 
+    return data;
 }
 int peek(){
     return queue[front];
@@ -32,7 +34,7 @@ int peek(){
 void display(){
     printf("Queue elements are: \n ");
     for(int i=front;i<=rear;i++){
-        printf("%d", queue[i]);
+        printf("%d ", queue[i]);
     }
 }
 int main(){
